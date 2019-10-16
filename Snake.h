@@ -16,7 +16,8 @@
 #define SNAKE_INIT_LENGTH 3
 
 typedef struct Point Point;
-struct Point{
+struct Point
+{
     //Add a color for each block
     SDL_Surface *rectangle;
     int x;
@@ -27,7 +28,8 @@ struct Point{
 
 };
 
-typedef struct Snake{
+typedef struct Snake
+{
     Uint32 color;
     Point* head;
     int length;

@@ -9,7 +9,8 @@
 #include "Snake.h"
 #include "Menu.h"
 
-typedef struct GameState{
+typedef struct GameState
+{
     SDL_Surface *game_screen;
 
     Snake* snake;

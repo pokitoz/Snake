@@ -1,6 +1,7 @@
 #include "Snake.h"
 
-Snake* SNAKE_create(Uint32 color){
+Snake* SNAKE_create(Uint32 color)
+{
 
     Snake* snake = (Snake*) malloc(sizeof(Snake));
     snake->head = (Point*) malloc(sizeof(Point));
@@ -18,12 +19,14 @@ Snake* SNAKE_create(Uint32 color){
 
 
     int i;
-    for(i =1; i < SNAKE_INIT_LENGTH; i++){
+    for(i =1; i < SNAKE_INIT_LENGTH; i++)
+    {
         SNAKE_add(snake, SNAKE_BEGIN_X, SNAKE_BEGIN_Y+i);
     }
 
     Point* point = snake->head->next;
-    while(point != NULL){
+    while(point != NULL)
+    {
         point->last_move = 'U';
         point->next_move = 'U';
         point = point->next;
@@ -32,10 +35,12 @@ Snake* SNAKE_create(Uint32 color){
     return snake;
 }
 
-void SNAKE_addEnd(Snake* snake){
+void SNAKE_addEnd(Snake* snake)
+{
 
     Point* next = snake->head;
-    while(next->next != NULL){
+    while(next->next != NULL)
+    {
         next = next->next;
     }
 
@@ -44,60 +49,68 @@ void SNAKE_addEnd(Snake* snake){
 
 }
 
-void SNAKE_add(Snake* snake, int x, int y){
+void SNAKE_add(Snake* snake, int x, int y)
+{
 
-     snake->length += 1;
+    snake->length += 1;
 
-     Point* tail = snake->head;
-     while(tail->next != NULL){
+    Point* tail = snake->head;
+    while(tail->next != NULL)
+    {
         tail = tail->next;
-     }
+    }
 
-     tail->next = (Point*) malloc(sizeof(Point));
-     tail->next->x = x;
-     tail->next->y = y;
+    tail->next = (Point*) malloc(sizeof(Point));
+    tail->next->x = x;
+    tail->next->y = y;
 
-     tail->next->rectangle = SDL_CreateRGBSurface(SDL_HWSURFACE, MAP_PIXEL_SNAKE, MAP_PIXEL_SNAKE, 32, 0, 0, 0, 0);
-     SDL_FillRect(tail->next->rectangle, NULL, snake->color);
+    tail->next->rectangle = SDL_CreateRGBSurface(SDL_HWSURFACE, MAP_PIXEL_SNAKE, MAP_PIXEL_SNAKE, 32, 0, 0, 0, 0);
+    SDL_FillRect(tail->next->rectangle, NULL, snake->color);
 
-     tail->next->next = NULL;
+    tail->next->next = NULL;
 
 }
 
-void SNAKE_changeColor(Snake* snake, Uint32 color){
+void SNAKE_changeColor(Snake* snake, Uint32 color)
+{
     snake->color = color;
     Point* current = snake->head;
 
-    while(current != NULL){
+    while(current != NULL)
+    {
         SDL_FillRect(current->rectangle, NULL, snake->color);
         current = current->next;
     }
 
 }
 
-void POINT_move(Point* point, char move_letter){
-    switch (move_letter) {
-            case 'U':
-                point->y += -1;
-                break;
-            case 'D':
-                point->y += 1;
-                break;
-            case 'R':
-                point->x += 1;
-                break;
-            case 'L':
-                point->x += -1;
-                break;
-            default:
-                break;
-        }
+void POINT_move(Point* point, char move_letter)
+{
+    switch (move_letter)
+    {
+    case 'U':
+        point->y += -1;
+        break;
+    case 'D':
+        point->y += 1;
+        break;
+    case 'R':
+        point->x += 1;
+        break;
+    case 'L':
+        point->x += -1;
+        break;
+    default:
+        break;
+    }
 
-        point->last_move = move_letter;
+    point->last_move = move_letter;
 }
 
-void SNAKE_move(Snake* snake){
-    if(snake == NULL){
+void SNAKE_move(Snake* snake)
+{
+    if(snake == NULL)
+    {
         printf("Snake NULL");
         return;
     }
@@ -109,7 +122,8 @@ void SNAKE_move(Snake* snake){
     previous->last_move = previous->next_move;
 
 
-    while(next != NULL){
+    while(next != NULL)
+    {
         POINT_move(next, next->next_move); //Change in case of key pushed.
         next->next_move = previous->last_move;
         previous = next;
@@ -118,11 +132,13 @@ void SNAKE_move(Snake* snake){
 
 }
 
-void SNAKE_free(Snake* snake){
+void SNAKE_free(Snake* snake)
+{
     Point* current = snake->head;
     Point* next = snake->head->next;
 
-    while(next != NULL){
+    while(next != NULL)
+    {
         free(current->rectangle);
         free(current);
 

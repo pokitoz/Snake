@@ -11,7 +11,8 @@
 #define APPLE_SIZE_X 10
 #define APPLE_SIZE_Y 10
 
-typedef struct Apple{
+typedef struct Apple
+{
     SDL_Surface *rectangle;
     int x, y;
     int counter;

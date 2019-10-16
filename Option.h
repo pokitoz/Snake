@@ -4,7 +4,8 @@
 #define OPTION_GAP 25
 #include <SDL/SDL.h>
 
-typedef struct Option{
+typedef struct Option
+{
     SDL_Surface* title;
     SDL_Surface* speed;
     SDL_Surface* color;

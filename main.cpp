@@ -1,10 +1,12 @@
 #include "Main.h"
-//Multiscrren??
+// Multiscreen
 
 
-int main(int argc, char *argv[]){
+int main(int argc, char *argv[])
+{
 
-    if(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER) == -1){
+    if(SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER) == -1)
+    {
         fprintf(stderr, "Erreur d'initialisation de la SDL : %s\n", SDL_GetError());
         exit(EXIT_FAILURE);
     }
@@ -38,17 +40,19 @@ int main(int argc, char *argv[]){
     MENU_buildScreen(&gameState);
     SDL_Event event;
 
-    while (gameState.on){
+    while (gameState.on)
+    {
         SDL_WaitEvent(&event);
-        switch(event.type){
-            case SDL_QUIT:
-                gameState.on = 0;
-                break;
+        switch(event.type)
+        {
+        case SDL_QUIT:
+            gameState.on = 0;
+            break;
 
-            case SDL_KEYDOWN:
-                selection(event.key.keysym.sym, &gameState);
-                break;
-            }
+        case SDL_KEYDOWN:
+            selection(event.key.keysym.sym, &gameState);
+            break;
+        }
     }
 
     SDL_Quit();
@@ -56,19 +60,23 @@ int main(int argc, char *argv[]){
 }
 
 
-void selection(SDLKey key, GameState* gameState){
+void selection(SDLKey key, GameState* gameState)
+{
 
-    if(!gameState->pause){
+    if(!gameState->pause)
+    {
         GAME_Key(key, gameState);
     }
-    else{
-            if(gameState->isOption){
-                OPTION_key(key, gameState);
-            }
-            else{
-                MENU_key(key, gameState);
-            }
+    else
+    {
+        if(gameState->isOption)
+        {
+            OPTION_key(key, gameState);
+        }
+        else
+        {
+            MENU_key(key, gameState);
+        }
     }
 
 }
-

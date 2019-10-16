@@ -4,7 +4,8 @@
 #include <SDL/SDL.h>
 
 #include "Game.h"
-typedef struct Menu{
+typedef struct Menu
+{
     SDL_Surface* title;
     SDL_Surface* start;
     SDL_Surface* option;

@@ -1,7 +1,7 @@
 #ifdef __cplusplus
-    #include <cstdlib>
+#include <cstdlib>
 #else
-    #include <stdlib.h>
+#include <stdlib.h>
 #endif
 
 #include <SDL/SDL.h>
@@ -10,14 +10,16 @@
 #define MAP_NUMBER_CASE 20
 
 typedef struct Component Component;
-struct Component{
+struct Component
+{
 
     SDL_Surface *rectangle;
     int x, y;
     Component* next;
 };
 
-typedef struct Wall{
+typedef struct Wall
+{
 
     Component* start;
     Uint32 color;
@@ -25,7 +27,8 @@ typedef struct Wall{
 } Wall;
 
 
-Wall* WALL_create(int x, int y, Uint32 color){
+Wall* WALL_create(int x, int y, Uint32 color)
+{
 
     Wall* wall = malloc(sizeof(Wall));
     wall->color = color;
@@ -40,15 +43,18 @@ Wall* WALL_create(int x, int y, Uint32 color){
     return wall;
 }
 
-void WALL_addLine(Wall* wall, int line, int column){
+void WALL_addLine(Wall* wall, int line, int column)
+{
     Component* component = wall->start;
 
-    while(component != NULL){
+    while(component != NULL)
+    {
         component=component->next;
     }
 
     int i = 0;
-    while(i < MAP_NUMBER_CASE){
+    while(i < MAP_NUMBER_CASE)
+    {
         component = malloc(sizeof(Component));
         component->rectangle = SDL_CreateRGBSurface(SDL_HWSURFACE, MAP_PIXEL_WALL, MAP_PIXEL_WALL, 32, 0, 0,0, 0);
         SDL_FillRect(component->rectangle, NULL, wall->color);
@@ -59,19 +65,23 @@ void WALL_addLine(Wall* wall, int line, int column){
 
 }
 
-void WALL_free(Wall* wall){
+void WALL_free(Wall* wall)
+{
 
 }
 
-void WALL_addColumn(Wall* wall, int line, int column){
+void WALL_addColumn(Wall* wall, int line, int column)
+{
 
     Component* component = wall->start;
-    while(component != NULL){
+    while(component != NULL)
+    {
         component=component->next;
     }
 
     int i = 0;
-    while(i < MAP_NUMBER_CASE){
+    while(i < MAP_NUMBER_CASE)
+    {
         component = malloc(sizeof(Component));
         component->rectangle = SDL_CreateRGBSurface(SDL_HWSURFACE, MAP_PIXEL_WALL, MAP_PIXEL_WALL, 32, 0, 0,0, 0);
         SDL_FillRect(component->rectangle, NULL, wall->color);
@@ -82,17 +92,19 @@ void WALL_addColumn(Wall* wall, int line, int column){
 
 }
 
-void WALL_addComponent(Wall* wall, int x, int y){
+void WALL_addComponent(Wall* wall, int x, int y)
+{
 
     Component* component = wall->start;
-    while(component != NULL){
+    while(component != NULL)
+    {
         component=component->next;
     }
 
-     component = malloc(sizeof(Component));
-        component->rectangle = SDL_CreateRGBSurface(SDL_HWSURFACE, MAP_PIXEL_WALL, MAP_PIXEL_WALL, 32, 0, 0,0, 0);
-        SDL_FillRect(component->rectangle, NULL, wall->color);
-        component->x = x;
-        component->y = y;
+    component = malloc(sizeof(Component));
+    component->rectangle = SDL_CreateRGBSurface(SDL_HWSURFACE, MAP_PIXEL_WALL, MAP_PIXEL_WALL, 32, 0, 0,0, 0);
+    SDL_FillRect(component->rectangle, NULL, wall->color);
+    component->x = x;
+    component->y = y;
 
 }
