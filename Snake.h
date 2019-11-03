@@ -5,7 +5,7 @@
 
 #include <SDL/SDL.h>
 #include <unistd.h>
-#include <windows.h>
+//#include <windows.h>
 
 #define MAP_SIZE_X 20
 #define MAP_SIZE_Y 20

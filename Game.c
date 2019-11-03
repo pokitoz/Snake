@@ -78,7 +78,7 @@ void GAME_free(GameState* gameState)
 void GAME_end(GameState* gameState, char message[100])
 {
 
-    MessageBox(NULL, "End of the game", message, MB_OK);
+    //MessageBox(NULL, "End of the game", message, MB_OK);
     SDL_RemoveTimer(gameState->timer);
     gameState->pause = 1;
     gameState->snake = SNAKE_create(COLOR_WHITE);
